@@ -1,28 +1,29 @@
 version: '3'
 services:
-
   server:
     build: ./server
     container_name: server
+    image: cyebukayire/react-ci-node-server:v1
+    
     ports:
       - '4000:4000'
-    # volumes:
-    #   - ./server:/app
-    #   - ./app/node_modules
-
+    volumes:
+      - ./server:/app
+      - ./app/node_modules
 
   client:
     build: ./client
-    container_name: client-react
+    container_name: react-ci-node-client
+    image: cyebukayire/react-ci-node-client:v1
     ports:
       - '3000:3000'
       
       # Volumes can't work on windows like this
-      # volumes:
-      #   - ./server:/app
-      #   - ./app/node_modules
+    volumes:
+      - ./client:/app
+      - ./app/node_modules
     
     # For react app to work properly on a container do this below
-    stdin_open: true
-    tty: true
+    # stdin_open: true
+    # tty: true
 
